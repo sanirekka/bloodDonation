@@ -12,7 +12,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ofdkn.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}';
+  'mongodb+srv://sanir122:Mongodb122!!!@cluster0.ofdkn.mongodb.net/shop';
 
 const app = express();
 const store = new MongoDBStore({
