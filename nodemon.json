@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER":"sanir122",
+        "MONGO_PASSWORD":"Mongodb122!!!",
+        "MONGO_DEFAULT_DATABASE":"shop"
+    }
+}
