@@ -7,29 +7,50 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
-            <div class="form-control">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="<% if (editing) { %><%= product.title %><% } %>">
-            </div>
-            <div class="form-control">
-                <label for="imageUrl">Image URL</label>
-                <input type="text" name="imageUrl" id="imageUrl" value="<% if (editing) { %><%= product.imageUrl %><% } %>">
-            </div>
-            <div class="form-control">
-                <label for="price">Price</label>
-                <input type="number" name="price" id="price" step="0.01" value="<% if (editing) { %><%= product.price %><% } %>">
-            </div>
-            <div class="form-control">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" rows="5"><% if (editing) { %><%= product.description %><% } %></textarea>
-            </div>
-            <% if (editing) { %>
-                <input type="hidden" value="<%= product._id %>" name="productId">
-            <% } %>
-
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>
-        </form>
+        <% if (!isAuthenticated) { %>
+            <label for="authentication">Please first Sign up!</label>
+            <form class="product-form" action="/singup">
+                <div class="form-control">
+                    <button class="btn" type="submit">Sign up</button>
+                </div>
+            </form>
+            <form class="product-form" action="/login">
+                <div class="form-control">
+                    <button class="btn" type="submit">Login</button>
+                </div>
+            </form>
+            
+        <% } else { %>
+            <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
+                <div class="form-control">
+                    <label for="title">Name</label>
+                    <input type="text" name="name" id="name" value="<% if (editing) { %><%= product.name %><% } %>">
+                </div>
+                <div class="form-control">
+                    <label for="imageUrl">Blood Group</label>
+                    <input type="text" name="blood_group" id="blood_group" value="<% if (editing) { %><%= product.blood_group %><% } %>">
+                </div>
+                <div class="form-control">
+                    <label for="price">Contact</label>
+                    <input type="text" name="contact" id="contact"  value="<% if (editing) { %><%= product.contact %><% } %>">
+                </div>
+                <div class="form-control">
+                    <label for="description">Address</label>
+                    <textarea name="address" id="address" rows="5"><% if (editing) { %><%= product.address %><% } %></textarea>
+                </div>
+                <div class="form-control">
+                    <label for="description">Reason</label>
+                    <textarea name="reason" id="reason" rows="5"><% if (editing) { %><%= product.reason %><% } %></textarea>
+                </div>
+    
+                <% if (editing) { %>
+                    <input type="hidden" value="<%= product._id %>" name="productId">
+                <% } %>
+    
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Listing<% } %></button>
+            </form>
+        <% } %>
+        
     </main>
 <%- include('../includes/end.ejs') %>

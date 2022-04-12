@@ -18,13 +18,34 @@ const userSchema = new Schema({
       {
         productId: {
           type: Schema.Types.ObjectId,
-          ref: 'Product',
+          ref: 'Recipient',
           required: true
         },
         quantity: { type: Number, required: true }
       }
     ]
   }
+
+  // name: {
+  //   type: String
+  // },
+  // blood_group: {
+  //   type: String
+  // },
+  // contact: {
+  //   type: String
+  // },
+  // address: {
+  //   type: String
+  // },
+  // donated: {
+  //   type: Boolean,
+  //   recipientId: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Recipient'
+  //   }
+  // }
+
 });
 
 userSchema.methods.addToCart = function(product) {

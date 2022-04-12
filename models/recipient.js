@@ -2,31 +2,61 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
-  title: {
+const recipientSchema = new Schema({
+  // email: {
+  //   type: String,
+  //   required: true
+  // },
+  // password: {
+  //   type: String,
+  //   required: true
+  // },
+  // resetToken: String,
+  // resetTokenExpiration: Date,
+  name: {
     type: String,
     required: true
   },
-  price: {
-    type: Number,
-    required: true
-  },
-  description: {
+  blood_group: {
     type: String,
     required: true
   },
-  imageUrl: {
+  contact: {
     type: String,
     required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   required: true
+  // }
+  reason: {
+    type: String,
+    required: true
+  },
+  Accepted: {
+    type: Boolean,
+    donorId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Donor',
+      required: true
+    }
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref:'User'
   }
+  // quantity: {
+  //   type:Number,
+  //   required: true
+  // }
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Recipient', recipientSchema);
 
 // const mongodb = require('mongodb');
 // const getDb = require('../util/database').getDb;

@@ -6,24 +6,31 @@
         <%- include('../includes/navigation.ejs') %>
 
             <main>
+                <h1>Please donate! if you can</h1>
                 <% if (prods.length > 0) { %>
                     <div class="grid">
                         <% for (let product of prods) { %>
-                            <article class="card product-item">
+                            <article class="card text-dark bg-warning mb-3 card product-item">
                                 <header class="card__header">
-                                    <h1 class="product__title">
-                                        <%= product.title %>
+                                    <h1 class="product__title">Name : 
+                                        <%= product.name %>
                                     </h1>
                                 </header>
-                                <div class="card__image">
+                                <!-- <div class="card__image">
                                     <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
-                                </div>
+                                </div> -->
                                 <div class="card__content">
-                                    <h2 class="product__price">$
-                                        <%= product.price %>
+                                    <h2 class="product__title">Blood Group :
+                                        <%= product.blood_group %>
                                     </h2>
-                                    <p class="product__description">
-                                        <%= product.description %>
+                                    <p class="product__title">Contact :
+                                        <%= product.contact %>
+                                    </p>
+                                    <p class="product__title">Address :
+                                        <%= product.address %>
+                                    </p>
+                                    <p class="product__title">Reason :
+                                        <%= product.reason %>
                                     </p>
                                 </div>
                                 <div class="card__actions">

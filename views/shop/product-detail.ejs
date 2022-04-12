@@ -3,16 +3,28 @@
 
     <body>
         <%- include('../includes/navigation.ejs') %>
+    
         <main class="centered">
-            <h1><%= product.title %></h1>
+            <!-- <h1><%= product.title %></h1>
             <hr>
             <div class="image">
                 <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
             </div>
             <h2><%= product.price %></h2>
-            <p><%= product.description %></p>
+            <p><%= product.description %></p> -->
+    
+            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card-header"><%=product.name%></div>
+                <div class="card-body">
+                  <h5 class="card-title"><%=product.blood_group%></h5>
+                  <p class="card-text"><%=product.contact%></p>
+                  <p class="card-text"><%=product.address%></p>
+                  <p class="card-text"><%=product.reason%></p>
+                </div>
+             
             <% if (isAuthenticated) { %>
                 <%- include('../includes/add-to-cart.ejs', {product: product}) %>
             <% } %>
+        </div>
         </main>
         <%- include('../includes/end.ejs') %>

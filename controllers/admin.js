@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Product = require('../models/recipient');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -9,22 +9,25 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const title = req.body.title;
-  const imageUrl = req.body.imageUrl;
-  const price = req.body.price;
-  const description = req.body.description;
+  const name = req.body.name;
+  const blood_group = req.body.blood_group;
+  const contact = req.body.contact;
+  const address = req.body.address;
+  const reason = req.body.reason;
+
   const product = new Product({
-    title: title,
-    price: price,
-    description: description,
-    imageUrl: imageUrl,
-    userId: req.user
+    name: name,
+    blood_group: blood_group,
+    contact: contact,
+    address: address,
+    reason: reason,
+    userId: req.user,
   });
   product
     .save()
     .then(result => {
       // console.log(result);
-      console.log('Created Product');
+      console.log('Created Recipient');
       res.redirect('/admin/products');
     })
     .catch(err => {
@@ -55,20 +58,22 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  const updatedTitle = req.body.title;
-  const updatedPrice = req.body.price;
-  const updatedImageUrl = req.body.imageUrl;
-  const updatedDesc = req.body.description;
+  const updatedName = req.body.name;
+  const updatedBlood_group = req.body.blood_group;
+  const updatedContact = req.body.contact;
+  const updatedAddress = req.body.address;
+  const updatedReason = req.body.reason;
 
   Product.findById(prodId)
     .then(product => {
       if (product.userId.toString() !== req.user._id.toString()) {
         return res.redirect('/');
       }
-      product.title = updatedTitle;
-      product.price = updatedPrice;
-      product.description = updatedDesc;
-      product.imageUrl = updatedImageUrl;
+      product.name = updatedName;
+      product.blood_group = updatedBlood_group;
+      product.contact = updatedContact;
+      product.address = updatedAddress;
+      product.reason = updatedReason;
       return product.save().then(result => {
         console.log('UPDATED PRODUCT!');
         res.redirect('/admin/products');
